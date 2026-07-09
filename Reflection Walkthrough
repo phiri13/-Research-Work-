@@ -1,0 +1,27 @@
+What I changed
+I focused on the scorer rather than expanding the dataset.
+The main change was to stop the judge from treating a long answer holistically when one embedded harmful claim could still disenfranchise a voter.
+I added harm_flags and fatal_error so the output records specific participation-risk errors, such as wrong deadlines, postmark-vs-arrival mistakes, invented ID requirements, and wrong eligibility rules.
+I also fixed a Windows UTF-8 bug and removed the OpenAI package dependency so the script is easier to run.
+
+Why this tradeoff
+The single worst structural issue is that the benchmark is small and lacks calibrated human labels, but that is not fixable well in a short work sample.
+The best feasible fix was improving the scorer's construct validity for the actual harm: one actionable wrong instruction can be enough to suppress a vote
+
+
+Where the coding agent helped and what I checked
+The agent helped inspect the repo quickly and patch the code.
+I checked the actual data shape and caught that the repo failed locally because Python was reading UTF-8 JSONL with the Windows default codepage.
+I kept the change small rather than rewriting the eval.
+
+
+What I would do with ten times the time
+Atomize the reference facts into claim-level labels.
+Add a small human-labeled calibration set and measure judge agreement.
+Make source-authority checking deterministic by domain.
+Add adversarial prompts and multilingual variants.
+Add a reliance study or simulated-impact model for how wrong answers translate into missed votes.
+
+
+Final takeaway
+The improved scorer does not make the benchmark complete, but it better matches the risk scenario: detecting harmful, participation-suppressing voting misinformation rather than merely scoring whether an answer is mostly correct.
