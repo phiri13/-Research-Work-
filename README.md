@@ -150,7 +150,6 @@ Ran build.py successfully after the UTF-8 fix: 15 questions, 12 ground-truth fac
 Ran Python syntax compilation for build.py and score.py.
 Ran score.py live with MODEL=gpt-4.1-nano, temperature 0, against both cached systems (gpt-5-mini, gpt-5.4), 30 judge calls total. Output written to results/scores.json:
 
-
 Modelnaccuracyr1_accuracyincorrectsuppressive_errorsfatal_errorscited_official_rategpt-5-mini151.01.00001.0gpt-5.4150.9330.8751111.0
 
 
